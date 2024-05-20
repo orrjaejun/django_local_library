@@ -9,3 +9,5 @@ To run this project
 If migration is needed.
 py manage.py makemigrations
 py manage.py migrate
+
+2024.05.26
