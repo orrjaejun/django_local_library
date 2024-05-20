@@ -1,0 +1,11 @@
+To run this project
+1. Open virtual environment 
+    1.1 In command prompt enter 'mkvirtualenv my_django_environment'
+2. If django is not imported. (Check version 'py -m django --version')
+    2.2 Install django from pip 'pip3 install django'
+3. Run server
+    3.3 py manage.py runserver
+
+If migration is needed.
+py manage.py makemigrations
+py manage.py migrate
