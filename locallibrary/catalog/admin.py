@@ -8,7 +8,7 @@ admin.site.register(Genre)
 #admin.site.register(BookInstance)
 admin.site.register(Language)
 
-# Define the admin calss 
+# Define the admin class 
 
 
 class AuthorInline(admin.TabularInline):
