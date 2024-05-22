@@ -11,8 +11,16 @@
     <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
     <li><strong>Authors:</strong> {{ num_authors }}</li>
     <li><strong>Genres:</strong> {{ num_genre }}</li>
-    <li><strong>Number of the:</strong> {{ num_the }}</li>
   </ul>
+
+  <p>
+    You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+
+    <form action="{% url 'reset_num_visits' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Reset Visit Counter</button>
+    </form>
+  </p>
 {% endblock %}
 
 

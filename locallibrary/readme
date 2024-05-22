@@ -10,4 +10,7 @@ If migration is needed.
 py manage.py makemigrations
 py manage.py migrate
 
+1. workon my_django_environment
+2. cd C:\Django_test\django_local_library\locallibrary
+
 2024.05.26
