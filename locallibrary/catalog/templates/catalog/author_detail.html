@@ -1,26 +1,23 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Author Name: {{author.first_name}}, {{author.last_name}}</h1>
-
-<p>{{author.date_of_birth}} ~ {{author.date_of_death}}</p> <!-- author detail link not yet defined -->
-
-
-<div style="margin-left:20px;margin-top:20px">
-    <hr>
-    <h4>Books</h4>
-    <hr> 
-    {% if books %}
-        <ul>
-        {% for book in books %}
-            <li>
-                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
-                <p><strong>Summary:</strong> {{ book.summary }}</p>
-            </li>
-        {% endfor %}
+  <div class="container mt-5">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ author.first_name }} {{ author.last_name }}</h2>
+        <p class="card-text"><strong>Date of birth:</strong> {{ author.date_of_birth }}</p>
+        <p class="card-text"><strong>Date of death:</strong> {{ author.date_of_death }}</p>
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title">Books</h2>
+        <ul class="list-group">
+          {% for book in author.book_set.all %}
+            <li class="list-group-item"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
+          {% endfor %}
         </ul>
-    {% else %}
-        <p>This author has not written any books.</p>
-    {% endif %}
-</div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

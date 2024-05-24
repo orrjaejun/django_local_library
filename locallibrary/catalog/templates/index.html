@@ -1,27 +1,33 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>isLibrary Main</h1>
-  <p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
-  <h2>Dynamic content</h2>
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-    <li><strong>Genres:</strong> {{ num_genre }}</li>
-  </ul>
+  <div class="container mt-5">
+    <div class="jumbotron">
+      <h1 class="display-4 text-center">Haine Library</h1>
+      <p class="lead text-center">Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
+    </div>
 
-  <p>
-    You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title">Library Statistics</h2>
+        <p class="card-text">The library has the following record counts:</p>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Books:</strong> {{ num_books }}</li>
+          <li class="list-group-item"><strong>Copies:</strong> {{ num_instances }}</li>
+          <li class="list-group-item"><strong>Copies available:</strong> {{ num_instances_available }}</li>
+          <li class="list-group-item"><strong>Authors:</strong> {{ num_authors }}</li>
+          <li class="list-group-item"><strong>Genres:</strong> {{ num_genre }}</li>
+        </ul>
+      </div>
+    </div>
 
-    <form action="{% url 'reset_num_visits' %}" method="post">
+    <div class="alert alert-info text-center" role="alert">
+      You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+    </div>
+
+    <form action="{% url 'reset_num_visits' %}" method="post" class="text-center">
       {% csrf_token %}
-      <button type="submit">Reset Visit Counter</button>
+      <button type="submit" class="btn btn-danger">Reset Visit Counter</button>
     </form>
-  </p>
+  </div>
 {% endblock %}
-
-
-

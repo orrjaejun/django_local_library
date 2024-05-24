@@ -7,42 +7,48 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <!-- Add additional CSS in static file -->
   {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 </head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-      {% block sidebar %}
-
-
-        <ul class="sidebar-nav">
-          <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="{% url 'books' %}">All books</a></li>
-          <li><a href="{% url 'authors' %}">All authors</a></li>
-        </ul>
-     {% endblock %}
-      </div>
-      <div class="col-sm-10 ">{% block content %}{% endblock %}
-        {% block pagination %}
-        {% if is_paginated %}
-          <div class="pagination">
-            <span class="page-links">
-              {% if page_obj.has_previous %}
-                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-              {% endif %}
-              <span class="page-current">
-                <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
-              </span>
-              {% if page_obj.has_next %}
-                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-              {% endif %}
-            </span>
-          </div>
+<body class="bg-dark text-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Haine Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item nav-link">User: {{ user.get_username }}</li>
+          <li class="nav-item nav-link"><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
+          <li class="nav-item nav-link">
+            <form id="logout-form" method="post" action="{% url 'logout' %}" class="form-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link nav-link text-light">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
+          </li>
         {% endif %}
-      {% endblock %}</div>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Home</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'books' %}">All books</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'authors' %}">All authors</a></li>
+      </ul>
     </div>
+  </nav>
+
+  <div class="container mt-4">
+    {% block content %}{% endblock %}
   </div>
-  
+
+  <footer class="footer bg-dark mt-auto py-3">
+    <div class="container text-center">
+      <span class="text-muted">Haine Library &copy; 2024</span>
+    </div>
+  </footer>
 </body>
 </html>

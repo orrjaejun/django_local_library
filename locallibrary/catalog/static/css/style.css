@@ -1,5 +1,153 @@
-.sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
-  }
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  margin-right: 15px;
+}
+
+/* Jumbotron styling */
+.jumbotron {
+  background: #333;
+  color: white;
+  padding: 2rem 1rem;
+  border-radius: 0.3rem;
+}
+
+/* Card styles */
+.card {
+  background-color: #1e1e1e;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+
+/* List group styles */
+.list-group-item {
+  background-color: #2c2c2c;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.list-group-item-action:hover,
+.list-group-item-action:focus {
+  background-color: #3a3a3a;
+}
+
+/* Button styles */
+.btn-danger {
+  padding: 0.5rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  background-color: #d9534f;
+  border: none;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #c9302c;
+}
+
+/* Alert */
+.alert {
+  font-size: 1.2rem;
+  background-color: #444444;
+  color: #e0e0e0;
+  border: none;
+}
+
+/* Pagination styling */
+.pagination {
+  margin-top: 20px;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  background-color: #2c2c2c;
+  border: none;
+}
+
+.page-item .page-link {
+  color: #007bff;
+  background-color: #2c2c2c;
+  border: none;
+}
+
+.page-item .page-link:hover {
+  color: #0056b3;
+  background-color: #3a3a3a;
+}
+
+/* Custom styles for lists and details */
+ul.list-group {
+  margin-top: 20px;
+}
+
+h1, h4 {
+  margin-bottom: 20px;
+  color: #e0e0e0;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-color: #444;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mt-5 {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+p {
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+a {
+  color: #80d4ff;
+}
+
+a:hover {
+  color: #66c2ff;
+}
+
+#logout-form {
+  display: inline;
+}
+
+#logout-form button {
+  padding: 0;
+  margin: 0;
+}

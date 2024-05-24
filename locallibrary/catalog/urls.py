@@ -1,4 +1,5 @@
-from django.urls import path, re_path
+from django.urls import include, path, re_path
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
@@ -8,4 +9,5 @@ urlpatterns = [
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     re_path(r'^author/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
     path('reset_num_visits/', views.reset_num_visits, name='reset_num_visits'),
+    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
 ]
