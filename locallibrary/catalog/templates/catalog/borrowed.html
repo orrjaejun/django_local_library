@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>All Borrowed Books</h1>
+
+    {% if object_list %}
+    <ul class="list-group">
+        {% for borrow in object_list %}
+        <li class="list-group-item">
+            <strong class ="{% if borrow.is_overdue %}text-danger{% endif %}">{{ borrow.book.title }} <a href="{% url 'renew-book-librarian' borrow.id %}"> - Renew</a>
+            </strong><br>
+            
+            Due back: {{ borrow.due_back }}<br>
+            Borrower: {{ borrow.borrower }}
+            
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">There are no borrowed books in the library.</p>
+    {% endif %}
+{% endblock %}

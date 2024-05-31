@@ -8,11 +8,15 @@
         <p class="card-text"><strong>Date of birth:</strong> {{ author.date_of_birth }}</p>
         <p class="card-text"><strong>Date of death:</strong> {{ author.date_of_death }}</p>
       </div>
+      <div class="d-flex justify-content-end">
+        <a href="{% url 'author_update' author.id %}" class="btn btn-primary mr-2">Update Author</a>
+        <a href="{% url 'author_delete' author.id %}" class="btn btn-danger">Delete Author</a>
+      </div>
     </div>
     <div class="card mb-4">
       <div class="card-body">
         <h2 class="card-title">Books</h2>
-        <ul class="list-group">
+        <ul class="list-group mb-3">
           {% for book in author.book_set.all %}
             <li class="list-group-item"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
           {% endfor %}
