@@ -86,6 +86,12 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'catalog.CustomUser'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

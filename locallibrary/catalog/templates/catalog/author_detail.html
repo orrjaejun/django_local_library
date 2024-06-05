@@ -8,10 +8,12 @@
         <p class="card-text"><strong>Date of birth:</strong> {{ author.date_of_birth }}</p>
         <p class="card-text"><strong>Date of death:</strong> {{ author.date_of_death }}</p>
       </div>
+      {% if user.is_staff %}
       <div class="d-flex justify-content-end">
         <a href="{% url 'author_update' author.id %}" class="btn btn-primary mr-2">Update Author</a>
         <a href="{% url 'author_delete' author.id %}" class="btn btn-danger">Delete Author</a>
       </div>
+      {% endif %}
     </div>
     <div class="card mb-4">
       <div class="card-body">
