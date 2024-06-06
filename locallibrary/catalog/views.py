@@ -6,14 +6,13 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
-from requests import request
 from catalog.forms import RenewBookModelForm
 from django.contrib.auth.decorators import permission_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Book, Author, BookInstance, Genre
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth import login, authenticate
-
+from django.shortcuts import render, get_object_or_404
+from .forms import RentBookForm
 
 #Book View Classes
 class BookListView(generic.ListView):
@@ -147,7 +146,7 @@ def reset_num_visits(request):
         return redirect('index')
     
 
-
+#Update feature for staff member
 def renew_book_librarian(request, pk):
     """View function for renewing a specific BookInstance by librarian."""
     book_instance = get_object_or_404(BookInstance, pk=pk)
@@ -179,3 +178,30 @@ def renew_book_librarian(request, pk):
 
     return render(request, 'catalog/book_renew_librarian.html', context)
 
+
+#Rent book
+def rent_book(request, pk):
+    book_instance = get_object_or_404(BookInstance, pk=pk, status='a')
+    
+    if request.method == 'POST':
+        form = RentBookForm(request.POST)
+        if form.is_valid():
+            due_back = form.cleaned_data['due_back']
+            user = request.user
+            # Update the book instance status to indicate it is rented
+            book_instance.status = 'o'  # Assuming 'o' means on loan
+            book_instance.borrower = user
+            book_instance.due_back = due_back
+            book_instance.save()
+            return render(request, 'catalog/rent_success.html', {'book_instance': book_instance})
+        else:
+            return render(request, 'catalog/book_rent_fail.html', {'form': form, 'book_instance': book_instance})
+    else:
+        form = RentBookForm()
+
+    context = {
+        'book_instance': book_instance,
+        'form': form,
+    }
+
+    return render(request, 'catalog/rent.html', context)

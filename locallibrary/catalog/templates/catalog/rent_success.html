@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="card mb-4">
+      <div class="card-body text-center">
+        <h2 class="card-title">Book Rented Successfully</h2>
+        <p>You have successfully rented the book: 
+          <a href="{{ book_instance.book.get_absolute_url }}">{{ book_instance.book.title }}</a>
+        </p>
+        <a href="{% url 'index' %}" class="btn btn-primary mt-3">Back to Menu</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title">Rent Book</h2>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="due_back">Due date:</label>
+            <input type="date" name="due_back" class="form-control" id="due_back">
+          </div>
+          {{ form.book_instance_id }}
+          <button type="submit" class="btn btn-primary">Rent</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
